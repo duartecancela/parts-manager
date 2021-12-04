@@ -27,7 +27,8 @@ class PartsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('parts.create',['categories'=>$categories]);
     }
 
     /**

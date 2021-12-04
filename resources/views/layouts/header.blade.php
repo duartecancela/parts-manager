@@ -22,7 +22,7 @@
                         rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                             <ul class="py-1" aria-labelledby="dropdownLargeButton">
                                 <li>
-                                    <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2
+                                    <a href="{{ route('parts.create')}}" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2
                                     dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Create</a>
                                 </li>
                                 <li>
@@ -30,11 +30,6 @@
                                     dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">List</a>
                                 </li>
                         </div>
-                    </li>
-                    <li>
-                        <a href="#" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent
-                        md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white
-                        dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Manage</a>
                     </li>
                     <li>
                         <a href="#" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent
