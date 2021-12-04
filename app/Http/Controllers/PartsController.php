@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Parts;
+use App\Models\Category;
+use App\Models\Part;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,7 @@ class PartsController extends Controller
      */
     public function index()
     {
-        $parts = Parts::all();
+        $parts = Part::all();
         return view('parts.index', ['parts'=>$parts]);
     }
 
