@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class StockOutput extends Model
 {
     use HasFactory;
+
+    public function parts()
+    {
+        return $this->belongsTo(Part::class);
+    }
 }

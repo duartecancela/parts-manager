@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Storage extends Model
 {
     use HasFactory;
+
+    public function stock_inputs()
+    {
+        return $this->hasMany(StockInput::class);
+    }
+
 }
