@@ -39,7 +39,18 @@ class PartsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // get ID from category
+        $tableRow = DB::table('categories')->where('name', 'Capacitors')->first();
+        $categoryId = $tableRow->id;
+
+        // save data to database
+        $part = new Part();
+        // $part->name = $request->input('name');
+        // $part->category_id = $categoryId;
+        // $part->description = $request->input('description');
+        // $part->stock = 0; // init stock
+        // $part->save();
+        return view('parts.store',['part'=>$part]);
     }
 
     /**

@@ -9,3 +9,4 @@ Route::get('/', function () {
 
 Route::get('/parts',[PartsController::class, 'index'])->name('parts');
 Route::get('/parts/create',[PartsController::class, 'create'])->name('parts.create');
+Route::post('/parts/store',[PartsController::class, 'store'])->name('parts.store');
