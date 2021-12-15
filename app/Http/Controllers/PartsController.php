@@ -16,8 +16,9 @@ class PartsController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         $parts = Part::all();
-        return view('parts.index', ['parts'=>$parts]);
+        return view('parts.index', ['parts'=>$parts, 'categories'=>$categories]);
     }
 
     /**
@@ -62,7 +63,9 @@ class PartsController extends Controller
      */
     public function show($id)
     {
-        //
+        $categories = Category::all();
+        $part = DB::table('parts')->where('id', $id)->first();
+        return view('parts.show',['part'=>$part, 'categories'=>$categories]);
     }
 
     /**
