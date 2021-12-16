@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Part;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Table;
 
 class PartsController extends Controller
 {
@@ -62,9 +63,9 @@ class PartsController extends Controller
      */
     public function show($id)
     {
-        $categories = Category::all();
-        $part = DB::table('parts')->where('id', $id)->first();
-        return view('parts.show',['part'=>$part, 'categories'=>$categories]);
+        $part = Part::with('categories')->where('id', $id)->with('categories')->first();
+//        $part = DB::table('parts')->where('id', $id)->first();
+        return view('parts.show',['part'=>$part]);
     }
 
     /**

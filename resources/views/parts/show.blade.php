@@ -31,7 +31,7 @@
                     <div class="md:w-2/3">
                         <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700
                     leading-tight focus:outline-none focus:bg-white focus:border-purple-500 cursor-not-allowed"
-                               id="category" name="category" type="text" placeholder=""  disabled>
+                               id="category" name="category" type="text" placeholder="{{ $part->categories->name }}"  disabled>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
