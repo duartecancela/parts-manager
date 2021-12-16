@@ -8,7 +8,7 @@
                 <div class="text-center text-3xl py-2">Show Electronic Part </div>
             </div>
 
-            {{-- start create form --}}
+            {{-- start show form --}}
             <form method="POST" action="{{url('parts/edit')}}" class="w-10/12">
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
@@ -61,15 +61,12 @@
                     </div>
                 </div>
                 <div class="md:flex md:items-center">
-                    <div class="md:w-5/6"></div>
-                    <div class="md:w-2/3">
+                    <div class="md:w-5/6">
                         <a href="/parts/edit/{{ $part->id }}" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
                     text-white font-bold py-2 px-6 rounded">Edit</a>
                     </div>
-                    <div class="md:w-2/3 md:items-center">
-                        <a href="{{ url()->previous() }}" class="shadow bg-green-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
-                    text-white font-bold py-2 px-6 rounded">Back</a>
-                    </div>
+
+
                 </div>
             </form>
         </div>
