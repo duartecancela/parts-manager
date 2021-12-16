@@ -19,13 +19,7 @@
                     @foreach($parts as $part)
                         <tr>
                             <td class="text-center"> {{ $part->name }} </td>
-                            <td class="text-center">
-                                @foreach($categories as $category)
-                                    @if($category->id == $part->category_id)
-                                        {{ $category->name }}
-                                    @endif
-                                @endforeach
-                            </td>
+                            <td class="text-center"> {{ $part->categories->name }}</td>
                             <td class="text-center"> {{ $part->description }} </td>
                         </tr>
                     @endforeach

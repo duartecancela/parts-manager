@@ -16,9 +16,8 @@ class PartsController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        $parts = Part::all();
-        return view('parts.index', ['parts'=>$parts, 'categories'=>$categories]);
+        $parts = Part::with('categories')->get();
+        return view('parts.index', ['parts'=>$parts]);
     }
 
     /**
