@@ -64,7 +64,6 @@ class PartsController extends Controller
     public function show($id)
     {
         $part = Part::with('categories')->where('id', $id)->with('categories')->first();
-//        $part = DB::table('parts')->where('id', $id)->first();
         return view('parts.show',['part'=>$part]);
     }
 
@@ -76,7 +75,9 @@ class PartsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $part = Part::with('categories')->where('id', $id)->with('categories')->first();
+        return view('parts.edit',['part'=>$part, 'categories'=>$categories ]);
     }
 
     /**
