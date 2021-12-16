@@ -77,15 +77,13 @@
                               type="text" name="description" placeholder="{{$part->description}}" rows="5" disabled></textarea>
                         </div>
                     </div>
-                    <div class="md:flex md:items-center">
-                        <div class="md:w-5/6"></div>
-                        <div class="md:w-2/3">
+                    <div class="md:flex md:items-center mb-6">
+                        <div class="md:w-3/4">
+
+                        </div>
+                        <div class="md:w-2/4">
                             <a href="/parts/edit/{{ $part->id }}" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
                     text-white font-bold py-2 px-6 rounded">Edit</a>
-                        </div>
-                        <div class="md:w-2/3 md:items-center">
-                            <a href="{{ url()->previous() }}" class="shadow bg-green-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
-                    text-white font-bold py-2 px-6 rounded">Back</a>
                         </div>
                     </div>
                     <br>
