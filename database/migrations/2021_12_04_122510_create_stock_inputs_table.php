@@ -20,7 +20,7 @@ class CreateStockInputsTable extends Migration
             $table->unsignedInteger('storage_id');
             $table->unsignedInteger('supplier_id');
             $table->integer('quantity');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->foreign('part_id')
                 ->references('id')
                 ->on('parts')

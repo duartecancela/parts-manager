@@ -18,7 +18,7 @@ class CreateStockOutputsTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('part_id');
             $table->integer('quantity');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->foreign('part_id')
                 ->references('id')
                 ->on('parts')
