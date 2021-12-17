@@ -11,6 +11,6 @@ class Supplier extends Model
 
     public function stock_inputs()
     {
-        return $this->hasMany(StockInput::class);
+        return $this->hasMany(StockInput::class, 'id');
     }
 }

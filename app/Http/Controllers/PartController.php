@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Table;
 
-class PartsController extends Controller
+class PartController extends Controller
 {
     /**
      * Display a listing of the resource.
