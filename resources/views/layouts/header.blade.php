@@ -32,7 +32,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent
+                        <a href="{{ route('stock_inputs') }}" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent
                         md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white
                         dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Stock In</a>
                     </li>

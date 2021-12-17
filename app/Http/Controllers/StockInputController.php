@@ -18,7 +18,8 @@ class StockInputController extends Controller
      */
     public function index()
     {
-        //
+        $stockInputs = StockInput::with('parts')->get();
+        return view('stock_inputs.index', ['stockInputs'=>$stockInputs]);
     }
 
     /**
@@ -47,10 +48,16 @@ class StockInputController extends Controller
         $stockInput->part_id = $request->input('part_id');
         $stockInput->storage_id = $request->input('storage');
         $stockInput->supplier_id = $request->input('supplier');
-        $stockInput->date = Carbon::now();
+        $stockInput->created_at = Carbon::now();
         $stockInput->quantity = $request->input('quantity');
         $stockInput->description = $request->input('description');
-        dd($request->input('description'));
+        $stockInput->save();
+        // update stock
+        $this->addToStock($request->input('quantity'),$request->input('part_id'));
+
+        $stockInputs = StockInput::with('parts')->get();
+        return view('stock_inputs.store', ['stockInputs'=>$stockInputs]);
+
     }
 
     /**
@@ -96,5 +103,21 @@ class StockInputController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param $currentStock
+     * @param $addValue
+     * @return update stock
+     */
+    public function addToStock($addValue, $part_id)
+    {
+        $part = Part::with('categories')->where('id', $part_id)->with('categories')->first();
+        $oldStock = $part->stock;
+        $newStock = $oldStock + $addValue;
+
+        Part::where('id', $part_id)->update(['stock' => $newStock]);
+        $part->save();
+
     }
 }

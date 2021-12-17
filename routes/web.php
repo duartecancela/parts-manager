@@ -20,3 +20,4 @@ Route::get('/parts/destroy/{id}',[PartController::class, 'destroy'])->name('part
 //stock_inputs routes
 Route::get('stock_inputs/create/{part_id}', [StockInputController::class, 'create'])->name('stock_inputs.create');
 Route::post('stock_inputs/store', [StockInputController::class, 'store'])->name('stock_inputs.store');
+Route::get('stock_inputs', [StockInputController::class, 'index'])->name('stock_inputs');
