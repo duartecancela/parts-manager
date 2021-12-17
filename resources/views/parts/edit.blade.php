@@ -73,10 +73,8 @@
                     </button>
                 </div>
                 <div class="md:w-2/3 md:items-center">
-                    <button class="shadow bg-red-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
-                    text-white font-bold py-2 px-6 rounded" type="button" onclick="return confirm('Confirm this delete?')">
-                        Delete
-                    </button>
+                    <a href="/parts/destroy/{{ $part->id }}" class="shadow bg-red-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none
+                    text-white font-bold py-2 px-6 rounded" onclick="return confirm('Confirm this delete?')">Delete</a>
                 </div>
             </div>
         </form>

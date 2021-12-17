@@ -19,7 +19,7 @@ class CreatePartsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->string('name');
             $table->integer('stock');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')

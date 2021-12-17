@@ -40,8 +40,6 @@ class PartsController extends Controller
      */
     public function store(Request $request)
     {
-        $updateCreate = 'create';
-
         // get name and id by id from category
         $tableRow = DB::table('categories')->where('id', $request->input('category'))->first();
         $categoryId = $tableRow->id;
@@ -54,7 +52,7 @@ class PartsController extends Controller
         $part->description = $request->input('description');
         $part->stock = 0; // init stock
         $part->save();
-        return view('parts.store',['part'=>$part, 'categoryName'=>$categoryName, 'updateCreate'=>$updateCreate]);
+        return view('parts.store',['part'=>$part, 'categoryName'=>$categoryName]);
     }
 
     /**
@@ -91,13 +89,12 @@ class PartsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateCreate = 'update';
         Part::where('id', $id)->update(['name' => $request->input('name')]);
         Part::where('id', $id)->update(['category_id' => $request->input('category')]);
         Part::where('id', $id)->update(['description' => $request->input('description')]);
 
         $part = part::where('id',$id)->first();
-        return view('parts.store',['part'=>$part, 'updateCreate'=>$updateCreate]);
+        return view('parts.update',['part'=>$part]);
     }
 
     /**
@@ -108,6 +105,9 @@ class PartsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $part = Part::where('id',$id)->first();
+        $part->delete();
+        $parts = Part::all();
+        return view('parts.destroy',['parts'=>$parts]);
     }
 }

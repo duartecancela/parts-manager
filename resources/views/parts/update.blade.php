@@ -12,7 +12,7 @@
                 <div class="px-4 py-5 sm:px-6">
                     <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
                         <p class="font-bold">Success</p>
-                        <p>The electronic part was successfully created.</p>
+                        <p>The electronic part was successfully updated.</p>
                     </div>
                 </div>
                 {{-- start show form --}}
@@ -84,3 +84,4 @@
         </div>
     </div>
 @endsection
+
