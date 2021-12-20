@@ -14,7 +14,7 @@
                                 <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-6 py-2 text-xs text-gray-500">
-                                        Date
+                                        Output Date
                                     </th>
                                     <th class="px-6 py-2 text-xs text-gray-500">
                                         Name

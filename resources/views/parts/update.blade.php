@@ -26,7 +26,7 @@
                         <div class="md:w-2/3">
                             <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700
                     leading-tight focus:outline-none focus:bg-white cursor-not-allowed bg-gray-50"
-                                   id="name" name="name" type="text" placeholder="{{$part->name}}"  disabled>
+                                   id="name" name="name" type="text" placeholder="{{$part->name}}" disabled>
                         </div>
                     </div>
                     <div class="md:flex md:items-center mb-6">
@@ -38,7 +38,8 @@
                         <div class="md:w-2/3">
                             <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700
                     leading-tight focus:outline-none focus:bg-white cursor-not-allowed bg-gray-50"
-                                   id="category" name="category" type="text" placeholder="{{ $part->categories->name }}"  disabled>
+                                   id="category" name="category" type="text" placeholder="{{ $part->categories->name }}"
+                                   disabled>
                         </div>
                     </div>
                     <div class="md:flex md:items-center mb-6">
@@ -52,19 +53,21 @@
                     leading-tight focus:outline-none focus:bg-white cursor-not-allowed bg-gray-50"
                                    id="stock" name="stock" type="text" placeholder="{{$part->stock}}
 
-                                "  disabled>
+                                " disabled>
                         </div>
                     </div>
                     <div class="md:flex md:items-center mb-6">
                         <div class="md:w-1/3">
-                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="description">
+                            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                                   for="description">
                                 Description
                             </label>
                         </div>
                         <div class="md:w-2/3">
                     <textarea class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700
                     leading-tight focus:outline-none focus:bg-white cursor-not-allowed bg-gray-50" id="description"
-                              type="text" name="description" placeholder="{{$part->description}}" rows="5" disabled></textarea>
+                              type="text" name="description" placeholder="{{$part->description}}" rows="5"
+                              disabled></textarea>
                         </div>
                     </div>
                     <div class="md:flex md:items-center mb-6">

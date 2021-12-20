@@ -13,8 +13,8 @@ class PagesController
      */
     public function index()
     {
-        $parts = Part::with('categories')->orderBy('created_at', 'desc')->get();
-        return view('index', ['parts'=>$parts]);
+        $parts = Part::with('categories')->orderBy('created_at', 'desc')->paginate(10);
+        return view('index', ['parts' => $parts]);
     }
 
     /**

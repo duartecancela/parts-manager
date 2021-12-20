@@ -18,8 +18,8 @@ class StockInputController extends Controller
      */
     public function index()
     {
-        $stockInputs = StockInput::with('parts')->orderBy('created_at', 'desc')->get();
-        return view('stock_inputs.index', ['stockInputs'=>$stockInputs]);
+        $stockInputs = StockInput::with('parts')->orderBy('created_at', 'desc')->paginate(10);
+        return view('stock_inputs.index', ['stockInputs' => $stockInputs]);
     }
 
     /**
@@ -32,13 +32,13 @@ class StockInputController extends Controller
         $part = Part::with('categories')->where('id', $part_id)->with('categories')->first();
         $suppliers = Supplier::all();
         $storages = Storage::all();
-        return view('stock_inputs.create',['suppliers'=>$suppliers, 'storages'=>$storages, 'part'=>$part]);
+        return view('stock_inputs.create', ['suppliers' => $suppliers, 'storages' => $storages, 'part' => $part]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,17 +53,17 @@ class StockInputController extends Controller
         $stockInput->description = $request->input('description');
         $stockInput->save();
         // update stock
-        $this->addToStock($request->input('quantity'),$request->input('part_id'));
+        $this->addToStock($request->input('quantity'), $request->input('part_id'));
 
-        $stockInputs = StockInput::with('parts')->get();
-        return view('stock_inputs.store', ['stockInputs'=>$stockInputs]);
+        $stockInputs = StockInput::with('parts')->paginate(10);
+        return view('stock_inputs.store', ['stockInputs' => $stockInputs]);
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -74,7 +74,7 @@ class StockInputController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -85,8 +85,8 @@ class StockInputController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -97,7 +97,7 @@ class StockInputController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

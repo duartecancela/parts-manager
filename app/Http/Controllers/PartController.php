@@ -17,8 +17,8 @@ class PartController extends Controller
      */
     public function index()
     {
-        $parts = Part::with('categories')->orderBy('created_at', 'desc')->get();
-        return view('parts.index', ['parts'=>$parts]);
+        $parts = Part::with('categories')->orderBy('created_at', 'desc')->paginate(10);
+        return view('parts.index', ['parts' => $parts]);
     }
 
     /**
@@ -40,6 +40,10 @@ class PartController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
         // save data to database
         $part = new Part();
         $part->name = $request->input('name');
@@ -102,7 +106,7 @@ class PartController extends Controller
     {
         $part = Part::where('id',$id)->first();
         $part->delete();
-        $parts = Part::all();
+        $parts = Part::with('categories')->orderBy('created_at', 'desc')->get();
         return view('parts.destroy',['parts'=>$parts]);
     }
 }

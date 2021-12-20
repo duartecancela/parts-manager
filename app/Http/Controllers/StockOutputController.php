@@ -18,8 +18,8 @@ class StockOutputController extends Controller
      */
     public function index()
     {
-        $stockOutputs = StockOutput::with('parts')->orderBy('created_at', 'desc')->get();
-        return view('stock_outputs.index', ['stockOutputs'=>$stockOutputs]);
+        $stockOutputs = StockOutput::with('parts')->orderBy('created_at', 'desc')->paginate(10);
+        return view('stock_outputs.index', ['stockOutputs' => $stockOutputs]);
     }
 
     /**
@@ -32,13 +32,13 @@ class StockOutputController extends Controller
         $part = Part::with('categories')->where('id', $part_id)->with('categories')->first();
         $suppliers = Supplier::all();
         $storages = Storage::all();
-        return view('stock_outputs.create',['suppliers'=>$suppliers, 'storages'=>$storages, 'part'=>$part]);
+        return view('stock_outputs.create', ['suppliers' => $suppliers, 'storages' => $storages, 'part' => $part]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -51,16 +51,16 @@ class StockOutputController extends Controller
         $stockOutput->description = $request->input('description');
         $stockOutput->save();
         // update stock
-        $this->removeFromStock($request->input('quantity'),$request->input('part_id'));
+        $this->removeFromStock($request->input('quantity'), $request->input('part_id'));
 
-        $stockOutputs = StockOutput::with('parts')->get();
-        return view('stock_outputs.store', ['stockOutputs'=>$stockOutputs]);
+        $stockOutputs = StockOutput::with('parts')->paginate(10);
+        return view('stock_outputs.store', ['stockOutputs' => $stockOutputs]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -71,7 +71,7 @@ class StockOutputController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -82,8 +82,8 @@ class StockOutputController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -94,7 +94,7 @@ class StockOutputController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

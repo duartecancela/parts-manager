@@ -60,19 +60,23 @@
                                             {{$part->stock}}
                                         </td>
                                         <td class="px-6 py-4">
-                                            <a href="/parts/show/{{ $part->id }}" class="px-4 py-1 text-sm text-white bg-blue-400 rounded">View</a>
+                                            <a href="/parts/show/{{ $part->id }}"
+                                               class="px-4 py-1 text-sm text-white bg-blue-400 rounded">View</a>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <a href="/stock_inputs/create/{{ $part->id }}" class="px-4 py-1 text-sm text-white bg-green-400 rounded">IN</a>
+                                            <a href="/stock_inputs/create/{{ $part->id }}"
+                                               class="px-4 py-1 text-sm text-white bg-green-400 rounded">IN</a>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <a href="/stock_outputs/create/{{ $part->id }}" class="px-4 py-1 text-sm text-white bg-red-400 rounded">OUT</a>
+                                            <a href="/stock_outputs/create/{{ $part->id }}"
+                                               class="px-4 py-1 text-sm text-white bg-red-400 rounded">OUT</a>
                                         </td>
                                 @endforeach
-
                                 </tbody>
                             </table>
                         </div>
+                        <br>
+                        {{ $parts->links() }}
                     </div>
                 </div>
             </div>
