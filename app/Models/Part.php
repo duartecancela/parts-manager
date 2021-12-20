@@ -10,9 +10,10 @@ class Part extends Model
     use HasFactory;
 
     protected $fillable = [
+        'category_id',
         'name',
-        'category',
-        'description'
+        'description',
+        'stock'
     ];
 
     public function categories()
