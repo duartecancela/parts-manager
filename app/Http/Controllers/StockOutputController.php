@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Part;
+use App\Models\StockOutput;
+use App\Models\Storage;
+use App\Models\Supplier;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class StockOutputController extends Controller
@@ -13,7 +18,8 @@ class StockOutputController extends Controller
      */
     public function index()
     {
-        //
+        $stockOutputs = StockOutput::with('parts')->get();
+        return view('stock_outputs.index', ['stockOutputs'=>$stockOutputs]);
     }
 
     /**
@@ -21,9 +27,12 @@ class StockOutputController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($part_id)
     {
-        //
+        $part = Part::with('categories')->where('id', $part_id)->with('categories')->first();
+        $suppliers = Supplier::all();
+        $storages = Storage::all();
+        return view('stock_outputs.create',['suppliers'=>$suppliers, 'storages'=>$storages, 'part'=>$part]);
     }
 
     /**
@@ -34,7 +43,18 @@ class StockOutputController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //save to database
+        $stockOutput = new StockOutput();
+        $stockOutput->part_id = $request->input('part_id');
+        $stockOutput->created_at = Carbon::now();
+        $stockOutput->quantity = $request->input('quantity');
+        $stockOutput->description = $request->input('description');
+        $stockOutput->save();
+        // update stock
+        $this->removeFromStock($request->input('quantity'),$request->input('part_id'));
+
+        $stockOutputs = StockOutput::with('parts')->get();
+        return view('stock_outputs.store', ['stockOutputs'=>$stockOutputs]);
     }
 
     /**
@@ -80,5 +100,21 @@ class StockOutputController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param $currentStock
+     * @param $subtractValue
+     * @return update stock
+     */
+    public function removeFromStock($subtractValue, $part_id)
+    {
+        $part = Part::with('categories')->where('id', $part_id)->with('categories')->first();
+        $oldStock = $part->stock;
+        $newStock = $oldStock - $subtractValue;
+
+        Part::where('id', $part_id)->update(['stock' => $newStock]);
+        $part->save();
+
     }
 }

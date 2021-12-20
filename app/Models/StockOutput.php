@@ -11,6 +11,6 @@ class StockOutput extends Model
 
     public function parts()
     {
-        return $this->belongsTo(Part::class);
+        return $this->belongsTo(Part::class, 'part_id', 'id');
     }
 }

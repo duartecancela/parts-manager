@@ -1,12 +1,17 @@
 @extends('layouts.app')
 @section('content')
     <div class="flex justify-center">
-        <div class="container mx-auto bg-gray-100 p-6 rounded-lg max-w-screen-lg">
+        <div class="container mx-auto bg-gray-200 p-6 rounded-lg max-w-screen-lg">
             {{-- content name --}}
             <div class="border-b-2 border-white mb-8 pb-4">
-                <div class="text-center text-3xl py-2"> Electronics Parts List</div>
+                <div class="text-center text-3xl py-2"> Stock Outputs Parts List</div>
             </div>
-
+            <div class="px-4 py-5 sm:px-6">
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+                    <p class="font-bold">Success</p>
+                    <p>The electronic part output was successfully processed .</p>
+                </div>
+            </div>
             <div class="container flex justify-center mx-auto w-full">
                 <div class="flex flex-col">
                     <div class="w-full">
@@ -14,6 +19,9 @@
                             <table>
                                 <thead class="bg-gray-50">
                                 <tr>
+                                    <th class="px-6 py-2 text-xs text-gray-500">
+                                        Date
+                                    </th>
                                     <th class="px-6 py-2 text-xs text-gray-500">
                                         Name
                                     </th>
@@ -24,46 +32,31 @@
                                         Description
                                     </th>
                                     <th class="px-6 py-2 text-xs text-gray-500">
-                                        Stock
-                                    </th>
-                                    <th class="px-6 py-2 text-xs text-gray-500">
-                                        View
-                                    </th>
-                                    <th class="px-6 py-2 text-xs text-gray-500">
-                                        Stock In
-                                    </th>
-                                    <th class="px-6 py-2 text-xs text-gray-500">
                                         Stock Out
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white">
-                                @foreach($parts as $part)
+                                @foreach($stockOutputs as $stockOutput)
                                     <tr>
                                     <tr class="whitespace-nowrap">
                                         <td class="px-6 py-4 text-sm text-gray-500">
-                                            <a href="/parts/show/{{ $part->id }}">{{ $part->name }}</a>
+                                            {{$stockOutput->created_at}}
                                         </td>
                                         <td class="px-6 py-4 text-sm text-gray-500">
-                                            {{$part->categories->name}}
+                                            {{$stockOutput->parts->name}}
                                         </td>
                                         <td class="px-6 py-4 text-sm text-gray-500">
-                                            {{$part->description}}
+                                            {{$stockOutput->parts->categories->name}}
                                         </td>
                                         <td class="px-6 py-4 text-sm text-gray-500">
-                                            {{$part->stock}}
+                                            {{$stockOutput->description}}
                                         </td>
-                                        <td class="px-6 py-4">
-                                            <a href="/parts/show/{{ $part->id }}" class="px-4 py-1 text-sm text-white bg-blue-400 rounded">View</a>
+                                        <td class="px-6 py-4 text-sm text-gray-500">
+                                            {{$stockOutput->quantity}}
                                         </td>
-                                        <td class="px-6 py-4">
-                                            <a href="/stock_inputs/create/{{ $part->id }}" class="px-4 py-1 text-sm text-white bg-green-400 rounded">IN</a>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <a href="/stock_outputs/create/{{ $part->id }}" class="px-4 py-1 text-sm text-white bg-red-400 rounded">OUT</a>
-                                        </td>
+                                    </tr>
                                 @endforeach
-
                                 </tbody>
                             </table>
                         </div>
@@ -73,5 +66,3 @@
         </div>
     </div>
 @endsection
-
-
