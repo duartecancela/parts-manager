@@ -12,7 +12,7 @@
                     <div class="w-full">
                         <div class="bg-white shadow p-10 text-2xl">
                             <p>Electronic Parts Manager is an application prototype for
-                                the web application development discipline of the Computer Engineering course at
+                                the web application development subject of the Computer Engineering class at
                                 IPBEJA. </p>
                             <br>
                             <hr>
