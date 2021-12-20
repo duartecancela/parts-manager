@@ -18,7 +18,7 @@ class StockOutputController extends Controller
      */
     public function index()
     {
-        $stockOutputs = StockOutput::with('parts')->get();
+        $stockOutputs = StockOutput::with('parts')->orderBy('created_at', 'desc')->get();
         return view('stock_outputs.index', ['stockOutputs'=>$stockOutputs]);
     }
 

@@ -17,7 +17,7 @@ class PartController extends Controller
      */
     public function index()
     {
-        $parts = Part::with('categories')->get();
+        $parts = Part::with('categories')->orderBy('created_at', 'desc')->get();
         return view('parts.index', ['parts'=>$parts]);
     }
 

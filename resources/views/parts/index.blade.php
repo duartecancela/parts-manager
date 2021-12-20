@@ -15,6 +15,9 @@
                                 <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-6 py-2 text-xs text-gray-500">
+                                        Created at
+                                    </th>
+                                    <th class="px-6 py-2 text-xs text-gray-500">
                                         Name
                                     </th>
                                     <th class="px-6 py-2 text-xs text-gray-500">
@@ -41,6 +44,9 @@
                                 @foreach($parts as $part)
                                     <tr>
                                     <tr class="whitespace-nowrap">
+                                        <td class="px-6 py-4 text-sm text-gray-500">
+                                            {{$part->created_at}}
+                                        </td>
                                         <td class="px-6 py-4 text-sm text-gray-500">
                                             <a href="/parts/show/{{ $part->id }}">{{ $part->name }}</a>
                                         </td>

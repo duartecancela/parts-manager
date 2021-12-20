@@ -18,7 +18,7 @@ class StockInputController extends Controller
      */
     public function index()
     {
-        $stockInputs = StockInput::with('parts')->get();
+        $stockInputs = StockInput::with('parts')->orderBy('created_at', 'desc')->get();
         return view('stock_inputs.index', ['stockInputs'=>$stockInputs]);
     }
 
