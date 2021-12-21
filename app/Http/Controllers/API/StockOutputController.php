@@ -5,16 +5,15 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
-use App\Models\StockInput;
-use App\Http\Resources\StockInput as StockInputResource;
+use App\Models\StockOutput;
+use App\Http\Resources\StockOutput as StockOutputResource;
 
-
-class StockInputController extends BaseController
+class StockOutputController extends  BaseController
 {
     public function index()
     {
-        $stockInputs = StockInput::all();
-        return $this->sendResponse(StockInputResource::collection($stockInputs), 'StockInputs fetched.');
+        $stockOutputs = StockOutput::all();
+        return $this->sendResponse(StockOutputResource::collection($stockOutputs), 'Stock Outputs fetched.');
     }
 
     public function store(Request $request)
@@ -22,16 +21,13 @@ class StockInputController extends BaseController
         $input = $request->all();
         $validator = Validator::make($input, [
             'part_id' => 'required',
-            'storage_id' => 'required',
-            'supplier_id' => 'required',
             'quantity' => 'required',
             'description' => 'required',
         ]);
         if($validator->fails()){
             return $this->sendError($validator->errors());
         }
-        $stockInput = StockInput::create($input);
-        return $this->sendResponse(new StockInputResource($stockInput), 'Stock Input created.');
+        $stockOutput = StockOutput::create($input);
+        return $this->sendResponse(new StockOutputResource($stockOutput), 'Stock Output created.');
     }
-
 }

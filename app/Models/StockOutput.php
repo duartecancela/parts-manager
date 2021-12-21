@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class StockOutput extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'part_id',
+        'quantity',
+        'description'
+    ];
 
     public function parts()
     {

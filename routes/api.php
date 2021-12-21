@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PartController;
 use App\Http\Controllers\API\StockInputController;
+use App\Http\Controllers\API\StockOutputController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,8 @@ Route::middleware('auth:sanctum')->group( function () {
 
 Route::middleware('auth:sanctum')->group( function () {
     Route::resource('stock_inputs', StockInputController::class);
+});
+
+Route::middleware('auth:sanctum')->group( function () {
+    Route::resource('stock_outputs', StockOutputController::class);
 });
