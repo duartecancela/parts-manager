@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class StockInput extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'part_id',
+        'storage_id',
+        'supplier_id',
+        'quantity',
+        'description'
+    ];
 
     public function parts()
     {

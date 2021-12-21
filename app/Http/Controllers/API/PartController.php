@@ -28,8 +28,8 @@ class PartController extends BaseController
         if($validator->fails()){
             return $this->sendError($validator->errors());
         }
-        $blog = Part::create($input);
-        return $this->sendResponse(new PartResource($blog), 'Part created.');
+        $part = Part::create($input);
+        return $this->sendResponse(new PartResource($part), 'Part created.');
     }
 
     public function show($id)

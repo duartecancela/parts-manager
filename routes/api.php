@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PartController;
+use App\Http\Controllers\API\StockInputController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,8 @@ Route::post('register', [AuthController::class, 'signup']);
 
 Route::middleware('auth:sanctum')->group( function () {
     Route::resource('parts', PartController::class);
+});
+
+Route::middleware('auth:sanctum')->group( function () {
+    Route::resource('stock_inputs', StockInputController::class);
 });
