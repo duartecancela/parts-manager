@@ -8,7 +8,7 @@
         "/api/parts": {
             "get": {
                 "tags": [
-                    "index"
+                    "part"
                 ],
                 "summary": "List parts.",
                 "description": "List of all electronic parts",
@@ -39,7 +39,7 @@
             },
             "post": {
                 "tags": [
-                    "store"
+                    "part"
                 ],
                 "summary": "Store part.",
                 "description": "Store an electronic part",
@@ -106,7 +106,7 @@
         "/api/parts/{id}": {
             "get": {
                 "tags": [
-                    "show"
+                    "part"
                 ],
                 "summary": "Show part.",
                 "description": "Show an electronic part",
@@ -140,45 +140,46 @@
             },
             "put": {
                 "tags": [
-                    "update"
+                    "part"
                 ],
                 "summary": "Update part",
                 "description": "Update an electronic part",
                 "operationId": "Upadte",
-                "requestBody": {
-                    "description": "Insert part fields",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "category_id",
-                                    "quantity"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "250"
-                                    },
-                                    "category_id": {
-                                        "type": "string",
-                                        "example": "2"
-                                    },
-                                    "description": {
-                                        "type": "string",
-                                        "example": "1/2W"
-                                    },
-                                    "quantity": {
-                                        "type": "int",
-                                        "example": "0"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "name of Part",
+                        "required": true,
+                        "schema": {
+                            "type": "String",
+                            "format": "String"
+                        },
+                        "example": "BC545"
+                    },
+                    {
+                        "name": "category_id",
+                        "in": "path",
+                        "description": "Id of Category",
+                        "required": true,
+                        "schema": {
+                            "type": "Integer",
+                            "format": "int"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "Part description",
+                        "required": false,
+                        "schema": {
+                            "type": "String",
+                            "format": "string"
+                        },
+                        "example": "Generic Transistor"
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -190,12 +191,41 @@
                                             "type": "Object",
                                             "example": {
                                                 "id": 5,
-                                                "category_id": "2",
-                                                "name": "250",
-                                                "0": "1",
-                                                "description": "1/2",
+                                                "category_id": "1",
+                                                "name": "BC545",
+                                                "description": "Generic Transistor",
                                                 "created_at": "12/15/2021",
                                                 "updated_at": "01/27/2022"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "part"
+                ],
+                "summary": "Delete part.",
+                "description": "Delete an electronic part",
+                "operationId": "destroy",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "part": {
+                                            "type": "Object",
+                                            "example": {
+                                                "success": true,
+                                                "data": "[]",
+                                                "message": "Part deleted."
                                             }
                                         }
                                     },

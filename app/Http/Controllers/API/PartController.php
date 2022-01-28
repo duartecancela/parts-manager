@@ -16,7 +16,7 @@ class PartController extends BaseController
      * summary="List parts.",
      * description="List of all electronic parts",
      * operationId="index",
-     * tags={"index"},
+     * tags={"part"},
      *
      * @OA\Response(
      *     response=200,
@@ -46,7 +46,7 @@ class PartController extends BaseController
      * summary="Store part.",
      * description="Store an electronic part",
      * operationId="store",
-     * tags={"store"},
+     * tags={"part"},
      * @OA\RequestBody(
      *    required=true,
      *    description="Insert part fields",
@@ -96,7 +96,7 @@ class PartController extends BaseController
      * summary="Show part.",
      * description="Show an electronic part",
      * operationId="show",
-     * tags={"show"},
+     * tags={"part"},
      *
      * @OA\Response(
      *     response=200,
@@ -132,17 +132,39 @@ class PartController extends BaseController
      * summary="Update part",
      * description="Update an electronic part",
      * operationId="Upadte",
-     * tags={"update"},
-     * @OA\RequestBody(
+     * tags={"part"},
+     * @OA\Parameter(
+     *    description="name of Part",
+     *    in="path",
+     *    name="name",
      *    required=true,
-     *    description="Insert part fields",
-     *    @OA\JsonContent(
-     *       required={"name","category_id", "quantity"},
-     *       @OA\Property(property="name", type="string", example="250"),
-     *       @OA\Property(property="category_id", type="string",  example="2"),
-     *       @OA\Property(property="description", type="string", example="1/2W"),
-     *       @OA\Property(property="quantity", type="int", example="0"),
-     *    ),
+     *    example="BC545",
+     *    @OA\Schema(
+     *       type="String",
+     *       format="String"
+     *    )
+     * ),
+     * @OA\Parameter(
+     *    description="Id of Category",
+     *    in="path",
+     *    name="category_id",
+     *    required=true,
+     *    example="1",
+     *    @OA\Schema(
+     *       type="Integer",
+     *       format="int"
+     *    )
+     * ),
+     * @OA\Parameter(
+     *    description="Part description",
+     *    in="path",
+     *    name="description",
+     *    required=false,
+     *    example="Generic Transistor",
+     *    @OA\Schema(
+     *       type="String",
+     *       format="string"
+     *    )
      * ),
      * @OA\Response(
      *     response=200,
@@ -150,9 +172,9 @@ class PartController extends BaseController
      *    @OA\JsonContent(
      *       @OA\Property(property="part", type="Object", example={
      *                         "id": 5,
-     *                         "category_id": "2",
-     *                         "name": "250", "1",
-     *                         "description": "1/2",
+     *                         "category_id": "1",
+     *                         "name": "BC545",
+     *                         "description": "Generic Transistor",
      *                         "created_at": "12/15/2021",
      *                         "updated_at": "01/27/2022"
      *                     })
@@ -184,6 +206,33 @@ class PartController extends BaseController
         return $this->sendResponse(new PartResource($part), 'Part updated.');
     }
 
+    /**
+     * @OA\Delete(
+     * path="/api/parts/{id}",
+     * summary="Delete part.",
+     * description="Delete an electronic part",
+     * operationId="destroy",
+     * tags={"part"},
+     *
+     * @OA\Response(
+     *     response=200,
+     *     description="OK",
+     *    @OA\JsonContent(
+     *       @OA\Property(property="part", type="Object", example={
+     *                         "success": true,
+     *                             "data": "[]",
+     *                             "message": "Part deleted."
+     *
+     *
+     *
+     *
+     *                     })
+     *        )
+     *     )
+     * )
+     *
+     *
+     */
     public function destroy(Part $part)
     {
         $part->delete();
