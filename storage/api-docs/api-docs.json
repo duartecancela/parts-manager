@@ -5,6 +5,136 @@
         "version": "0.1"
     },
     "paths": {
+        "/api/login": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "User login.",
+                "description": "User login",
+                "operationId": "signin",
+                "requestBody": {
+                    "description": "Insert login fields",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "duarte@mail.pt"
+                                    },
+                                    "password": {
+                                        "type": "int",
+                                        "example": "12345"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "part": {
+                                            "type": "Object",
+                                            "example": {
+                                                "success": true,
+                                                "data": {
+                                                    "token": "3|AGq3cwMXiBoHt84yGuWytjLptSDZ5AU0ZVKIH58d",
+                                                    "name": "Duarte"
+                                                },
+                                                "message": "User signed in."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Register user.",
+                "description": "register user",
+                "operationId": "signup",
+                "requestBody": {
+                    "description": "Insert register fields",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "confirm_password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Duarte"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "duarte@mail.pt"
+                                    },
+                                    "passord": {
+                                        "type": "int",
+                                        "example": "12345"
+                                    },
+                                    "confirm_password": {
+                                        "type": "int",
+                                        "example": "12345"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "part": {
+                                            "type": "Object",
+                                            "example": {
+                                                "success": true,
+                                                "data": {
+                                                    "token": "3|AGq3cwMXiBoHt84yGuWytjLptSDZ5AU0ZVKIH58d",
+                                                    "name": "Duarte"
+                                                },
+                                                "message": "User created successfully."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/parts": {
             "get": {
                 "tags": [
