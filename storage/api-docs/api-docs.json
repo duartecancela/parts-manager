@@ -366,6 +366,235 @@
                     }
                 }
             }
+        },
+        "/api/stock_inputs": {
+            "get": {
+                "tags": [
+                    "stock_inputs"
+                ],
+                "summary": "List stock input parts.",
+                "description": "List of stock input parts",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "part": {
+                                            "type": "Object",
+                                            "example": {
+                                                "success": true,
+                                                "data": {
+                                                    "id": 1,
+                                                    "part_id": 2,
+                                                    "storage_id": 1,
+                                                    "supplier_id": 1,
+                                                    "quantity": 5,
+                                                    "description": "To new project",
+                                                    "created_at": "12/17/2021",
+                                                    "updated_at": "12/17/2021"
+                                                },
+                                                "message": "StockInputs fetched."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/stock_input": {
+            "post": {
+                "tags": [
+                    "stock_inputs"
+                ],
+                "summary": "Input part in to stock.",
+                "description": "Input stock an electronic part",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Insert part fields",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "part_id",
+                                    "storage_id",
+                                    "supplier_id",
+                                    "quantity"
+                                ],
+                                "properties": {
+                                    "part_id": {
+                                        "type": "int",
+                                        "example": "1"
+                                    },
+                                    "storage_id": {
+                                        "type": "int",
+                                        "example": "1"
+                                    },
+                                    "supplier_id": {
+                                        "type": "int",
+                                        "example": "1"
+                                    },
+                                    "quantity": {
+                                        "type": "int",
+                                        "example": "5"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "For robotic project"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "part": {
+                                            "type": "Object",
+                                            "example": {
+                                                "success": true,
+                                                "data": {
+                                                    "id": "10",
+                                                    "part_id": "2",
+                                                    "storage_id": "1",
+                                                    "supplier_id": "1",
+                                                    "quantity": "4",
+                                                    "description": "For robotic project",
+                                                    "created_at": "01/28/2022",
+                                                    "updated_at": "01/28/2022"
+                                                },
+                                                "message": "Stock Input created."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/stock_outputs": {
+            "get": {
+                "tags": [
+                    "stock_outputs"
+                ],
+                "summary": "List stock output parts.",
+                "description": "List of stock output parts",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "part": {
+                                            "type": "Object",
+                                            "example": {
+                                                "success": true,
+                                                "data": {
+                                                    "id": 1,
+                                                    "part_id": 2,
+                                                    "quantity": 5,
+                                                    "description": "To new project",
+                                                    "created_at": "12/17/2021",
+                                                    "updated_at": "12/17/2021"
+                                                },
+                                                "message": "Stock Outputs fetched."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/stock_output": {
+            "post": {
+                "tags": [
+                    "stock_outputs"
+                ],
+                "summary": "Output part in to stock.",
+                "description": "Output stock an electronic part",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Insert part fields",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "part_id",
+                                    "quantity",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "part_id": {
+                                        "type": "int",
+                                        "example": "3"
+                                    },
+                                    "quantity": {
+                                        "type": "int",
+                                        "example": "2"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "For robotic project"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "part": {
+                                            "type": "Object",
+                                            "example": {
+                                                "success": true,
+                                                "data": {
+                                                    "id": 3,
+                                                    "part_id": "2",
+                                                    "quantity": "2",
+                                                    "description": "For arduino project",
+                                                    "created_at": "01/28/2022",
+                                                    "updated_at": "01/28/2022"
+                                                },
+                                                "message": "Stock Output created."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "security": [
